@@ -19,12 +19,7 @@ export default function App() {
       path:"/",
       element:(
       <div className="app">
-      <CustomNavbar/>
-      <Customheader />
-      <Jumbotron />
-      <CustomDashboard location={location} weatherdata={weatherdata} setlocation={setlocation} setweatherdata={setweatherdata} />
-      <Customhero/>
-      <CustomAboutMe/>
+      <CustomNavbar location={location} setlocation={setlocation} weatherdata={weatherdata} setweatherdata={setweatherdata}/>
       <Footer/>
     </div>
       ),
