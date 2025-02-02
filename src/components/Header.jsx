@@ -1,9 +1,9 @@
 import React from "react";
-
+import headerimage from "./headerimage.jpg"
 export default function Customheader() {
   return (
     <header>
-      <img src="https://picsum.photos/seed/700/500" alt="header image"  className="rounded"/>
+      <img src={headerimage} alt="headerimage"  className="rounded"/>
       
       <h1 className="text-capitalise">Weather dashboard</h1>
     </header>
