@@ -5,7 +5,7 @@ export default function Footer(){
             <li className="nav-item"><a href="/" className="nav-link px-2 text-body-secondary">Home</a></li>
             <li className="nav-item"><a href="/features" className="nav-link px-2 text-body-secondary">Features</a></li>
             <li className="nav-item"><a href="/hero" className="nav-link px-2 text-body-secondary">Hero</a></li>
-            <li className="nav-item"><a href="/table" className="nav-link px-2 text-body-secondary">table</a></li>
+            <li className="nav-item"><a href="/table" className="nav-link px-2 text-body-secondary">Table</a></li>
             <li className="nav-item"><a href="/aboutme" className="nav-link px-2 text-body-secondary">About</a></li>
           </ul>
           <p className="text-center text-body-secondary">{new Date().getFullYear()} Company, Inc</p>

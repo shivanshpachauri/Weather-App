@@ -4,23 +4,49 @@ import "./Weatherdashboard.css"; // Import the CSS file
 import { currentposition, Weatherdata } from "./http"; // Import the WeatherContext
 import { useQuery } from "@tanstack/react-query";
 export default function CustomdDashboard({weatherdata,setweatherdata,setlocation,location}){
+  const [Error, setError] = useState();
+  const [Loading, setLoading] = useState();
 
-  const { data: positionData } = useQuery({
+  const { data: positionData ,isLoading:positionloading,isError:positionerror} = useQuery({
     queryKey: ['fetchposition'],
     queryFn: currentposition,
   });
-
+  
   useEffect(() => {
     if (positionData) {
       setlocation(positionData);
     }
   }, [positionData]);
 
-  const { data: fetchweather } = useQuery({
+  const { data: fetchweather,isLoading:weatherloading,isError:weathererror } = useQuery({
     queryKey: ['fetchweatherdata',location],
     queryFn: ()=>Weatherdata(location),
     enabled:!!location
   });
+  useEffect(() => {
+    if (weathererror || positionerror) {
+      setError(
+        <div className="alert alert-primary" role="alert">
+          <strong>Error fetching </strong>
+        </div>
+      );
+    } else {
+      setError(null);
+    }
+
+    if (weatherloading || positionloading) {
+      setLoading(
+        <div className="d-flex justify-content-center align-items-center">
+          <div className="spinner-border text-primary spinner-border-sm" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      );
+    } else {
+      setLoading(null);
+    }
+  }, [weathererror, positionerror, weatherloading, positionloading]);
+
 
   React.useEffect(() => {
     if (fetchweather) {
@@ -34,6 +60,8 @@ export default function CustomdDashboard({weatherdata,setweatherdata,setlocation
 
   return (
     <center>
+      {Loading}
+      {Error}
     <table className="table text-center text-capitalise centered-table">
       <thead>
         <tr>
